@@ -474,28 +474,28 @@ def _calibrate_delay(
 def _get_lstm_config(architecture):
     return {
         Architecture.STANDARD: {
-            "num_layers": 1,
-            "hidden_size": 24,
-            "train_burn_in": 4096,
-            "train_truncate": 512,
+            "num_layers": 2,
+            "hidden_size": 42,
+            "train_burn_in": 16384,
+            "train_truncate": 2048,
         },
         Architecture.LITE: {
             "num_layers": 2,
-            "hidden_size": 8,
-            "train_burn_in": 4096,
-            "train_truncate": 512,
+            "hidden_size": 21,
+            "train_burn_in": 16384,
+            "train_truncate": 2048,
         },
         Architecture.FEATHER: {
             "num_layers": 1,
             "hidden_size": 16,
-            "train_burn_in": 4096,
-            "train_truncate": 512,
+            "train_burn_in": 16384,
+            "train_truncate": 2048,
         },
         Architecture.NANO: {
             "num_layers": 1,
             "hidden_size": 12,
-            "train_burn_in": 4096,
-            "train_truncate": 512,
+            "train_burn_in": 16384,
+            "train_truncate": 2048,    
         },
     }[architecture]
 
@@ -1004,8 +1004,8 @@ def train(
     delay=None,
     model_type: str = "WaveNet",
     architecture: Union[Architecture, str] = Architecture.STANDARD,
-    batch_size: int = 16,
-    ny: int = 8192,
+    batch_size: int = 1, # 16
+    ny: int = 48000,
     lr=0.004,
     lr_decay=0.007,
     seed: Optional[int] = 0,
@@ -1083,7 +1083,7 @@ def train(
         callbacks=[
             pl.callbacks.model_checkpoint.ModelCheckpoint(
                 filename="checkpoint_best_{epoch:04d}_{step}_{ESR:.4g}_{MSE:.3e}",
-                save_top_k=3,
+                save_top_k=15, # 3
                 monitor="val_loss",
                 every_n_epochs=1,
             ),
