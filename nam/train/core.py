@@ -880,7 +880,7 @@ def _get_configs(
     learning_config = {
         "train_dataloader": {
             "batch_size": batch_size,
-            "shuffle": True,
+            "shuffle": False, ### True
             "pin_memory": True,
             "drop_last": True,
             "num_workers": 0,
@@ -1004,11 +1004,11 @@ def train(
     delay=None,
     model_type: str = "WaveNet",
     architecture: Union[Architecture, str] = Architecture.STANDARD,
-    batch_size: int = 1, # 16
-    ny: int = 48000,
+    batch_size: int = 1, ### 16
+    ny: int = 48000, ### 8192
     lr=0.004,
     lr_decay=0.007,
-    seed: Optional[int] = 3, # 0
+    seed: Optional[int] = 3, ### 0
     save_plot: bool = False,
     silent: bool = False,
     modelname: str = "model",
@@ -1083,7 +1083,7 @@ def train(
         callbacks=[
             pl.callbacks.model_checkpoint.ModelCheckpoint(
                 filename="checkpoint_best_{epoch:04d}_{step}_{ESR:.4g}_{MSE:.3e}",
-                save_top_k=15, # 3
+                save_top_k=15, ### 3
                 monitor="val_loss",
                 every_n_epochs=1,
             ),
