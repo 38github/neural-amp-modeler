@@ -486,8 +486,8 @@ def _get_lstm_config(architecture):
             "train_truncate": 2048,
         },
         Architecture.FEATHER: {
-            "num_layers": 1,
-            "hidden_size": 16,
+            "num_layers": 2,
+            "hidden_size": 8,
             "train_burn_in": 16384,
             "train_truncate": 2048,
         },
