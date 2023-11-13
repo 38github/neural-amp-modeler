@@ -475,7 +475,7 @@ def _get_lstm_config(architecture):
     return {
         Architecture.STANDARD: {
             "num_layers": 2,
-            "hidden_size": 42,
+            "hidden_size": 47,
             "train_burn_in": 16384,
             "train_truncate": 2048,
         },
