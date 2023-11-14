@@ -880,7 +880,7 @@ def _get_configs(
     learning_config = {
         "train_dataloader": {
             "batch_size": batch_size,
-            "shuffle": False, ### True
+            "shuffle": True,
             "pin_memory": True,
             "drop_last": True,
             "num_workers": 0,
@@ -1008,7 +1008,7 @@ def train(
     ny: int = 48000, ### 8192
     lr=0.004,
     lr_decay=0.007,
-    seed: Optional[int] = 3, ### 0
+    seed: Optional[int] = 2, ### 0
     save_plot: bool = False,
     silent: bool = False,
     modelname: str = "model",
