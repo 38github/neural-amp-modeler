@@ -1008,7 +1008,7 @@ def train(
     ny: int = 48000, ### 8192
     lr=0.004,
     lr_decay=0.007,
-    seed: Optional[int] = 1, ### 0
+    seed: Optional[int] = 0,
     save_plot: bool = False,
     silent: bool = False,
     modelname: str = "model",
