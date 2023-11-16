@@ -6,7 +6,7 @@
     "train": {
         "start": null,
         "stop": -432000,
-        "ny": 8192
+        "ny": 48000 #!# 8192
     },
     "validation": {
         "start": -432000,
