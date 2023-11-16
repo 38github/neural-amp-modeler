@@ -5,7 +5,7 @@
     ],
     "train": {
         "start": null,
-        "stop": -432000,
+        "stop": null, #!# -432000
         "ny": 48000 #!# 8192
     },
     "validation": {
@@ -14,8 +14,8 @@
         "ny": null
     },
     "common": {
-        "x_path": "C:\\path\\to\\source.wav",
-        "y_path": "C:\\path\\to\\target.wav",
+        "x_path": "~/train_data/source.wav", #!# C:\\path\\to\\source.wav
+        "y_path": "~/train_data/target.wav", #!# C:\\path\\to\\target.wav
         "delay": 0
     }
 }
