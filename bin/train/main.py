@@ -56,7 +56,7 @@ def _rms(x: Union[np.ndarray, torch.Tensor]) -> float:
 def plot(
     model,
     ds,
-    savefig=None,
+    savefig=True, #!# None
     show=True,
     window_start: Optional[int] = None,
     window_end: Optional[int] = None,
