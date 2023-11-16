@@ -18,9 +18,9 @@
         "name": "LSTM",
         "config": {
             "num_layers": 2,
-            "hidden_size": 21,
-            "train_burn_in": 16384, # 4096
-            "train_truncate": 2048 ### 512            
+            "hidden_size": 21, #!# 23
+            "train_burn_in": 16384, #!# 4096
+            "train_truncate": 2048 #!# 512            
         }
     },
     "loss": {
