@@ -17,8 +17,8 @@
     "net": {
         "name": "LSTM",
         "config": {
-            "num_layers": 2,
-            "hidden_size": 21, #!# 23
+            "num_layers": 2, #!# 3
+            "hidden_size": 21, #!# 24
             "train_burn_in": 16384, #!# 4096
             "train_truncate": 2048 #!# 512            
         }
