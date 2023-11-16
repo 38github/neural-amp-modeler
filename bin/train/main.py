@@ -131,7 +131,7 @@ def _create_callbacks(learning_config):
 
     checkpoint_best = pl.callbacks.model_checkpoint.ModelCheckpoint(
         filename="{epoch:04d}_{step}_{ESR:.3e}_{MSE:.3e}",
-        save_top_k=3,
+        save_top_k=15,
         monitor="val_loss",
         **kwargs,
     )
