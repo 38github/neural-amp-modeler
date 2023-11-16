@@ -114,10 +114,10 @@ class Test(object):
 
         learning_config = {
             "train_dataloader": {
-                "batch_size": 3,
+                "batch_size": 16, ### 3
                 "shuffle": True,
                 "pin_memory": True,
-                "drop_last": True,
+                "drop_last": False, ### True
                 "num_workers": 0,
             },
             "val_dataloader": {},
