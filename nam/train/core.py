@@ -860,7 +860,7 @@ def _get_configs(
             "loss": {
                 "val_loss": "mse",
                 "mask_first": 4096,
-                "pre_emph_weight": 1.0,
+                "pre_emph_weight": 2.0, #!# 1.0
                 "pre_emph_coef": 0.85,
             },
             "optimizer": {"lr": 0.01},
@@ -1004,8 +1004,8 @@ def train(
     delay=None,
     model_type: str = "WaveNet",
     architecture: Union[Architecture, str] = Architecture.STANDARD,
-    batch_size: int = 16, ### 16
-    ny: int = 48000, ### 8192
+    batch_size: int = 16, #!# 16
+    ny: int = 48000, #!# 8192
     lr=0.004,
     lr_decay=0.007,
     seed: Optional[int] = 0,
@@ -1083,7 +1083,7 @@ def train(
         callbacks=[
             pl.callbacks.model_checkpoint.ModelCheckpoint(
                 filename="checkpoint_best_{epoch:04d}_{step}_{ESR:.4g}_{MSE:.3e}",
-                save_top_k=15, ### 3
+                save_top_k=15, #!# 3
                 monitor="val_loss",
                 every_n_epochs=1,
             ),
