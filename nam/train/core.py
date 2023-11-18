@@ -860,7 +860,7 @@ def _get_configs(
             "loss": {
                 "val_loss": "mse",
                 "mask_first": 4096,
-                "pre_emph_weight": 2.0, #!# 1.0
+                "pre_emph_weight": 2.5, #!# 1.0
                 "pre_emph_coef": 0.85,
             },
             "optimizer": {"lr": 0.01},
