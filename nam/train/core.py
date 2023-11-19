@@ -860,8 +860,8 @@ def _get_configs(
             "loss": {
                 "val_loss": "mse",
                 "mask_first": 4096,
-                "pre_emph_weight": 2.5, #!# 1.0
-                "pre_emph_coef": 0.85,
+                "pre_emph_weight": 1.0,
+                "pre_emph_coef": 5.85, #!# 0.85
             },
             "optimizer": {"lr": 0.01},
             "lr_scheduler": {"class": "ExponentialLR", "kwargs": {"gamma": 0.995}},
