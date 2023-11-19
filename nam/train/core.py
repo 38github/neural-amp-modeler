@@ -1005,7 +1005,7 @@ def train(
     model_type: str = "WaveNet",
     architecture: Union[Architecture, str] = Architecture.STANDARD,
     batch_size: int = 16, #!# 16
-    ny: int = 72000, #!# 8192
+    ny: int = 48000, #!# 8192
     lr=0.004,
     lr_decay=0.007,
     seed: Optional[int] = 0,
