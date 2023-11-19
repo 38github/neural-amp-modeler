@@ -10,7 +10,7 @@
     },
     "validation": {
         "x_path": "/home/ubuntu/train_data/x_test.wav",
-        "y_path": "/home/ubuntu/train_data/y_train.wav",
+        "y_path": "/home/ubuntu/train_data/y_test.wav",
         "ny": null
     },
     "common": {
