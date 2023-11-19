@@ -4,13 +4,13 @@
         "representative of this!"
     ],
     "train": {
-        "x_path": "C:\\path\\to\\train\\source.wav",
-        "y_path": "C:\\path\\to\\train\\target.wav",
-        "ny": 8192
+        "x_path": "/home/ubuntu/train_data/x_train.wav",
+        "y_path": "/home/ubuntu/train_data/y_train.wav",
+        "ny": 48000
     },
     "validation": {
-        "x_path": "C:\\path\\to\\validation\\source.wav",
-        "y_path": "C:\\path\\to\\validation\\target.wav",
+        "x_path": "/home/ubuntu/train_data/x_test.wav",
+        "y_path": "/home/ubuntu/train_data/y_train.wav",
         "ny": null
     },
     "common": {
