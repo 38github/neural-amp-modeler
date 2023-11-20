@@ -476,26 +476,26 @@ def _get_lstm_config(architecture):
         Architecture.STANDARD: {
             "num_layers": 2,
             "hidden_size": 47,
-            "train_burn_in": 24576,
-            "train_truncate": 10240,
+            "train_burn_in": 24576, #!# 4096
+            "train_truncate": 10240, #!# 1024
         },
         Architecture.LITE: {
             "num_layers": 2,
             "hidden_size": 21,
-            "train_burn_in": 24576,
-            "train_truncate": 10240,
+            "train_burn_in": 24576, #!# 4096
+            "train_truncate": 10240, #!# 1024
         },
         Architecture.FEATHER: {
             "num_layers": 2,
             "hidden_size": 8,
-            "train_burn_in": 24576,
-            "train_truncate": 10240,
+            "train_burn_in": 24576, #!# 4096
+            "train_truncate": 10240, #!# 1024
         },
         Architecture.NANO: {
             "num_layers": 1,
             "hidden_size": 12,
-            "train_burn_in": 24576,
-            "train_truncate": 10240,    
+            "train_burn_in": 24576, #!# 4096
+            "train_truncate": 10240, #!# 1024   
         },
     }[architecture]
 
