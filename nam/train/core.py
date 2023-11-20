@@ -487,13 +487,13 @@ def _get_lstm_config(architecture):
         },
         Architecture.FEATHER: {
             "num_layers": 2,
-            "hidden_size": 8,
+            "hidden_size": 14,
             "train_burn_in": 24576, #!# 4096
             "train_truncate": 10240, #!# 1024
         },
         Architecture.NANO: {
-            "num_layers": 1,
-            "hidden_size": 12,
+            "num_layers": 2,
+            "hidden_size": 8,
             "train_burn_in": 24576, #!# 4096
             "train_truncate": 10240, #!# 1024   
         },
