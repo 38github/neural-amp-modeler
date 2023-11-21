@@ -9,8 +9,8 @@
         "ny": 48000
     },
     "validation": {
-        "start": -432000,
-        "stop": null,
+        "start": 8208000,
+        "stop": 8639999,
         "ny": null
     },
     "common": {
