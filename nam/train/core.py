@@ -476,26 +476,26 @@ def _get_lstm_config(architecture):
         Architecture.STANDARD: {
             "num_layers": 2,
             "hidden_size": 47,
-            "train_burn_in": 24576, #!# 4096
-            "train_truncate": 10240, #!# 1024
+            "train_burn_in": 49152, #!# 4096
+            "train_truncate": 20480, #!# 1024
         },
         Architecture.LITE: {
             "num_layers": 2,
             "hidden_size": 21,
-            "train_burn_in": 24576, #!# 4096
-            "train_truncate": 10240, #!# 1024
+            "train_burn_in": 49152, #!# 4096
+            "train_truncate": 20480, #!# 1024
         },
         Architecture.FEATHER: {
             "num_layers": 2,
             "hidden_size": 14,
-            "train_burn_in": 24576, #!# 4096
-            "train_truncate": 10240, #!# 1024
+            "train_burn_in": 49152, #!# 4096
+            "train_truncate": 20480, #!# 1024
         },
         Architecture.NANO: {
             "num_layers": 2,
             "hidden_size": 8,
-            "train_burn_in": 24576, #!# 4096
-            "train_truncate": 10240, #!# 1024   
+            "train_burn_in": 49152, #!# 4096
+            "train_truncate": 20480, #!# 1024   
         },
     }[architecture]
 
@@ -864,7 +864,7 @@ def _get_configs(
                 "pre_emph_coef": 0.85,
             },
             "optimizer": {"lr": 0.01},
-            "lr_scheduler": {"class": "ExponentialLR", "kwargs": {"gamma": 0.995}},
+            "lr_scheduler": {"class": "ExponentialLR", "kwargs": {"gamma": 0.999}}, #!# 0.995
         }
     if fit_cab:
         model_config["loss"]["pre_emph_mrstft_weight"] = _CAB_MRSTFT_PRE_EMPH_WEIGHT
@@ -881,8 +881,8 @@ def _get_configs(
         "train_dataloader": {
             "batch_size": batch_size,
             "shuffle": True,
-            "pin_memory": True,
-            "drop_last": True,
+            "pin_memory": False, #!# True
+            "drop_last": False, #!# True
             "num_workers": 0,
         },
         "val_dataloader": {},
@@ -1004,9 +1004,9 @@ def train(
     delay=None,
     model_type: str = "WaveNet",
     architecture: Union[Architecture, str] = Architecture.STANDARD,
-    batch_size: int = 16, #!# 16
-    ny: int = 48000, #!# 8192
-    lr=0.004,
+    batch_size: int = 8, #!# 16
+    ny: int = 96000, #!# 8192
+    lr=0.01, #!# 0.004
     lr_decay=0.007,
     seed: Optional[int] = 0,
     save_plot: bool = False,
