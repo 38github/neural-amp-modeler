@@ -864,7 +864,7 @@ def _get_configs(
                 "pre_emph_coef": 0.85,
             },
             "optimizer": {"lr": 0.01},
-            "lr_scheduler": {"class": "ExponentialLR", "kwargs": {"gamma": 0.999}}, #!# 0.995
+            "lr_scheduler": {"class": "ExponentialLR", "kwargs": {"gamma": 0.995}},
         }
     if fit_cab:
         model_config["loss"]["pre_emph_mrstft_weight"] = _CAB_MRSTFT_PRE_EMPH_WEIGHT
