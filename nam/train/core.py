@@ -881,8 +881,8 @@ def _get_configs(
         "train_dataloader": {
             "batch_size": batch_size,
             "shuffle": True,
-            "pin_memory": False, #!# True
-            "drop_last": False, #!# True
+            "pin_memory": True, #!# True
+            "drop_last": True, #!# True. Using False removes highs.
             "num_workers": 0,
         },
         "val_dataloader": {},
