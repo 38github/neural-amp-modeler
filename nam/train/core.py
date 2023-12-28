@@ -488,7 +488,7 @@ def _get_lstm_config(architecture):
         Architecture.FEATHER: {
             "num_layers": 2,
             "hidden_size": 14,
-            "train_burn_in": 49152, #!# 4096
+            "train_burn_in": 2048, #!# 4096
             "train_truncate": 20480, #!# 1024
         },
         Architecture.NANO: {
@@ -881,9 +881,9 @@ def _get_configs(
         "train_dataloader": {
             "batch_size": batch_size,
             "shuffle": True,
-            "pin_memory": True, #!# True
-            "drop_last": True, #!# True. Using False removes highs.
-            "num_workers": 0,
+            "pin_memory": False, #!# True
+            "drop_last": False, #!# True
+            "num_workers": 8, #!# 0
         },
         "val_dataloader": {},
         "trainer": {"max_epochs": epochs, **device_config},
