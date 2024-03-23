@@ -130,7 +130,7 @@ class LSTM(BaseNet):
         hidden_size,
         train_burn_in: Optional[int] = None,
         train_truncate: Optional[int] = None,
-        input_size: int = 1,
+        input_size: int = 2, #!# 1
         sample_rate: Optional[float] = None,
         **lstm_kwargs,
     ):
@@ -201,7 +201,7 @@ class LSTM(BaseNet):
                 )
 
     def export_onnx(self, filename: Path):
-        if self._input_size != 1:
+        if self._input_size != 1: #!# 1
             raise NotImplementedError("Multi-dimensional inputs not supported yet")
         o = _ONNXWrapped(self)
         x = torch.randn((64,))  # (S,)
@@ -399,7 +399,7 @@ class _SkippyLSTM(nn.Module):
         self, input_size, hidden_size, skip_in: bool = False, num_layers=1, **kwargs
     ):
         super().__init__()
-        layers_per_lstm = 1
+        layers_per_lstm = 1 #!# 1
         self._skip_in = skip_in
         self._lstms = nn.ModuleList(
             [
