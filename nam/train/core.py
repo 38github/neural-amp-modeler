@@ -801,8 +801,8 @@ def get_wavenet_config(architecture):
                     "channels": 16,
                     "head_size": 8,
                     "kernel_size": 3,
-                    "dilations": [1, 2, 4, 8, 16, 32, 64, 128, 256, 512],
-                    "activation": "Tanh",
+                    "dilations": [512,256,128,64,32,16,8,4,2,1,24], #!#
+                    "activation": "Hardtanh", #!#
                     "gated": False,
                     "head_bias": False,
                 },
@@ -812,8 +812,8 @@ def get_wavenet_config(architecture):
                     "channels": 8,
                     "head_size": 1,
                     "kernel_size": 3,
-                    "dilations": [1, 2, 4, 8, 16, 32, 64, 128, 256, 512],
-                    "activation": "Tanh",
+                    "dilations": [512,256,128,64,32,16,8,4,2,1,24], #!#
+                    "activation": "Hardtanh", #!#
                     "gated": False,
                     "head_bias": True,
                 },
@@ -828,8 +828,8 @@ def get_wavenet_config(architecture):
                     "channels": 12,
                     "head_size": 6,
                     "kernel_size": 3,
-                    "dilations": [1, 2, 4, 8, 16, 32, 64],
-                    "activation": "Tanh",
+                    "dilations": [128,64,32,16,8,4,2,1,24], #!#
+                    "activation": "Hardtanh", #!#
                     "gated": False,
                     "head_bias": False,
                 },
@@ -839,8 +839,8 @@ def get_wavenet_config(architecture):
                     "channels": 6,
                     "head_size": 1,
                     "kernel_size": 3,
-                    "dilations": [128, 256, 512, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512],
-                    "activation": "Tanh",
+                    "dilations": [512,256,128,64,32,16,8,4,2,1,24], #!#
+                    "activation": "Hardtanh", #!#
                     "gated": False,
                     "head_bias": True,
                 },
@@ -855,8 +855,8 @@ def get_wavenet_config(architecture):
                     "channels": 8,
                     "head_size": 4,
                     "kernel_size": 3,
-                    "dilations": [1, 2, 4, 8, 16, 32, 64],
-                    "activation": "Tanh",
+                    "dilations": [128,64,32,16,8,4,2,1,24], #!#
+                    "activation": "Hardtanh", #!#
                     "gated": False,
                     "head_bias": False,
                 },
@@ -866,8 +866,8 @@ def get_wavenet_config(architecture):
                     "channels": 4,
                     "head_size": 1,
                     "kernel_size": 3,
-                    "dilations": [128, 256, 512, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512],
-                    "activation": "Tanh",
+                    "dilations": [512,256,128,64,32,16,8,4,2,1,24], #!#
+                    "activation": "Hardtanh", #!#
                     "gated": False,
                     "head_bias": True,
                 },
@@ -882,8 +882,8 @@ def get_wavenet_config(architecture):
                     "channels": 4,
                     "head_size": 2,
                     "kernel_size": 3,
-                    "dilations": [1, 2, 4, 8, 16, 32, 64],
-                    "activation": "Tanh",
+                    "dilations": [128,64,32,16,8,4,2,1,24], #!#
+                    "activation": "Hardtanh", #!#
                     "gated": False,
                     "head_bias": False,
                 },
@@ -893,8 +893,8 @@ def get_wavenet_config(architecture):
                     "channels": 2,
                     "head_size": 1,
                     "kernel_size": 3,
-                    "dilations": [128, 256, 512, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512],
-                    "activation": "Tanh",
+                    "dilations": [512,256,128,64,32,16,8,4,2,1,24], #!#
+                    "activation": "Hardtanh", #!#
                     "gated": False,
                     "head_bias": True,
                 },
@@ -904,7 +904,7 @@ def get_wavenet_config(architecture):
     }[architecture]
 
 
-_CAB_MRSTFT_PRE_EMPH_WEIGHT = 2.0e-4
+_CAB_MRSTFT_PRE_EMPH_WEIGHT = 2.0e-5 #!#
 _CAB_MRSTFT_PRE_EMPH_COEF = 0.85
 
 
@@ -1006,7 +1006,7 @@ def _get_configs(
             "optimizer": {"lr": lr},
             "lr_scheduler": {
                 "class": "ExponentialLR",
-                "kwargs": {"gamma": 1.0 - lr_decay},
+                "kwargs": {"gamma": 0.9985 - lr_decay}, #!#
             },
         }
     else:
@@ -1299,7 +1299,7 @@ def train(
     architecture: Union[Architecture, str] = Architecture.STANDARD,
     batch_size: int = 16,
     ny: int = _NY_DEFAULT,
-    lr=0.004,
+    lr=0.002, #!#
     lr_decay=0.007,
     seed: Optional[int] = 0,
     save_plot: bool = False,
