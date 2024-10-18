@@ -14,18 +14,19 @@
                     "head_size": 8,
                     "kernel_size": 3,
                     "dilations": [
-                        1,
-                        2,
-                        4,
-                        8,
-                        16,
-                        32,
-                        64,
-                        128,
+                        512,
                         256,
-                        512
+                        128,
+                        64,
+                        32,
+                        16,
+                        8,
+                        4,
+                        2,
+                        1,
+                        24
                     ],
-                    "activation": "Tanh",
+                    "activation": "Hardtanh",
                     "gated": false,
                     "head_bias": false
                 },
@@ -36,18 +37,19 @@
                     "head_size": 1,
                     "kernel_size": 3,
                     "dilations": [
-                        1,
-                        2,
-                        4,
-                        8,
-                        16,
-                        32,
-                        64,
-                        128,
+                        512,
                         256,
-                        512
+                        128,
+                        64,
+                        32,
+                        16,
+                        8,
+                        4,
+                        2,
+                        1,
+                        24
                     ],
-                    "activation": "Tanh",
+                    "activation": "Hardtanh",
                     "gated": false,
                     "head_bias": true
                 }
@@ -56,12 +58,12 @@
         }
     },
     "optimizer": {
-        "lr": 0.004
+        "lr": 0.002
     },
     "lr_scheduler": {
         "class": "ExponentialLR",
         "kwargs": {
-            "gamma": 0.993
+            "gamma": 0.9985
         }
     }
 }
