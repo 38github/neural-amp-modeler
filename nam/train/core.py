@@ -1300,7 +1300,7 @@ def train(
     batch_size: int = 16,
     ny: int = _NY_DEFAULT,
     lr=0.002, #!#
-    lr_decay=0.007,
+    lr_decay=0.07, #!# 0.007
     seed: Optional[int] = 0,
     save_plot: bool = False,
     silent: bool = False,
