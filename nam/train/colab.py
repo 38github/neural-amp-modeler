@@ -80,7 +80,7 @@ def run(
     model_type: str = "WaveNet",
     architecture: str = "standard",
     lr: float = 0.002, #!# 0.004
-    lr_decay: float = 0.0007, #!# 0.007
+    lr_decay: float = 0.007,
     seed: Optional[int] = 0,
     user_metadata: Optional[UserMetadata] = None,
     ignore_checks: bool = False,
