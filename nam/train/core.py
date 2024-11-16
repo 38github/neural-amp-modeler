@@ -1039,8 +1039,8 @@ def _get_configs(
         "train_dataloader": {
             "batch_size": batch_size,
             "shuffle": True,
-            "pin_memory": False, #!# EXPERIMENTAL
-            "drop_last": True,
+            "pin_memory": True,
+            "drop_last": False, #!#
             "num_workers": 8, #!#
         },
         "val_dataloader": {},
