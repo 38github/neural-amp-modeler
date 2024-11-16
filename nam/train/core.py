@@ -804,7 +804,7 @@ def get_wavenet_config(architecture):
                     "dilations": [512,256,128,64,32,16,8,4,2,1,24], #!#
                     "activation": "Hardtanh", #!#
                     "gated": False,
-                    "head_bias": False,
+                    "head_bias": True, #!#
                 },
                 {
                     "condition_size": 1,
@@ -818,7 +818,7 @@ def get_wavenet_config(architecture):
                     "head_bias": True,
                 },
             ],
-            "head_scale": 0.02,
+            "head_scale": 0.08, #!#
         },
         Architecture.LITE: {
             "layers_configs": [
@@ -831,7 +831,7 @@ def get_wavenet_config(architecture):
                     "dilations": [128,64,32,16,8,4,2,1,24], #!#
                     "activation": "Hardtanh", #!#
                     "gated": False,
-                    "head_bias": False,
+                    "head_bias": True, #!#
                 },
                 {
                     "condition_size": 1,
@@ -845,7 +845,7 @@ def get_wavenet_config(architecture):
                     "head_bias": True,
                 },
             ],
-            "head_scale": 0.02,
+            "head_scale": 0.08, #!#
         },
         Architecture.FEATHER: {
             "layers_configs": [
@@ -858,7 +858,7 @@ def get_wavenet_config(architecture):
                     "dilations": [128,64,32,16,8,4,2,1,24], #!#
                     "activation": "Hardtanh", #!#
                     "gated": False,
-                    "head_bias": False,
+                    "head_bias": True, #!#
                 },
                 {
                     "condition_size": 1,
@@ -869,10 +869,10 @@ def get_wavenet_config(architecture):
                     "dilations": [512,256,128,64,32,16,8,4,2,1,24], #!#
                     "activation": "Hardtanh", #!#
                     "gated": False,
-                    "head_bias": True,
+                    "head_bias": True, #!#
                 },
             ],
-            "head_scale": 0.02,
+            "head_scale": 0.08, #!#
         },
         Architecture.NANO: {
             "layers_configs": [
@@ -885,7 +885,7 @@ def get_wavenet_config(architecture):
                     "dilations": [128,64,32,16,8,4,2,1,24], #!#
                     "activation": "Hardtanh", #!#
                     "gated": False,
-                    "head_bias": False,
+                    "head_bias": True, #!#
                 },
                 {
                     "condition_size": 1,
@@ -896,10 +896,10 @@ def get_wavenet_config(architecture):
                     "dilations": [512,256,128,64,32,16,8,4,2,1,24], #!#
                     "activation": "Hardtanh", #!#
                     "gated": False,
-                    "head_bias": True,
+                    "head_bias": True, #!#
                 },
             ],
-            "head_scale": 0.02,
+            "head_scale": 0.08, #!#
         },
     }[architecture]
 
@@ -1039,9 +1039,9 @@ def _get_configs(
         "train_dataloader": {
             "batch_size": batch_size,
             "shuffle": True,
-            "pin_memory": True,
+            "pin_memory": False, #!# EXPERIMENTAL
             "drop_last": True,
-            "num_workers": 0,
+            "num_workers": 8, #!#
         },
         "val_dataloader": {},
         "trainer": {"max_epochs": epochs, **device_config},
@@ -1302,7 +1302,7 @@ def train(
     lr=0.002, #!#
     lr_decay=0.007,
     seed: Optional[int] = 0,
-    save_plot: bool = False,
+    save_plot: bool = True, #!#
     silent: bool = False,
     modelname: str = "model",
     ignore_checks: bool = False,
