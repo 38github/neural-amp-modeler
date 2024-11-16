@@ -1039,7 +1039,7 @@ def _get_configs(
         "train_dataloader": {
             "batch_size": batch_size,
             "shuffle": True,
-            "pin_memory": False, #!#
+            "pin_memory": True,
             "drop_last": True,
             "num_workers": 0, #!#
         },
@@ -1302,7 +1302,7 @@ def train(
     lr=0.002, #!#
     lr_decay=0.007,
     seed: Optional[int] = 0,
-    save_plot: bool = True, #!#
+    save_plot: bool = False,
     silent: bool = False,
     modelname: str = "model",
     ignore_checks: bool = False,
