@@ -1,4 +1,4 @@
-# File: environment.yml
+# File: environment_gpu.yml
 # Created Date: Saturday February 13th 2021
 # Author: Steven Atkinson (steven@atkinson.mn)
 
@@ -6,6 +6,7 @@ name: nam
 channels:
   - conda-forge # pytest-mock
   - pytorch
+  - nvidia  # GPU
 dependencies:
   - python>=3.9
   - black
@@ -16,10 +17,14 @@ dependencies:
   - numpy<2
   - pip
   - pre-commit
-  - pydantic
+  - pydantic>=2.0.0
   - pytest
   - pytest-mock
   - pytorch
+  # If your GPU isn't being detected, you may need a different version.
+  # You're going to need to look at Table 3 here: 
+  # https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html#cuda-major-component-versions__table-cuda-toolkit-driver-versions
+  - pytorch-cuda=12.1  # GPU
   - scipy
   - semver
   - tensorboard
@@ -31,4 +36,4 @@ dependencies:
       - sounddevice
       - transformers>=4  # See requirements.txt
       - wavio >=0.0.5
-      - -e .
+      - -e ..
