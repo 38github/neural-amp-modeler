@@ -66,7 +66,7 @@ def _plot(
             )
         return
     with _torch.no_grad():
-        tx = len(ds.x) / 192_000
+        tx = len(ds.x) / 96_000
         print(f"Run (t={tx:.2f})")
         t0 = _time()
         output = model(ds.x).flatten().cpu().numpy()
