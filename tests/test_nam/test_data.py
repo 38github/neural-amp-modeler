@@ -36,29 +36,9 @@ class TestDataset(object):
         no change.
         """
         x, y = self._create_xy()
-        x_out, y_out = data.Dataset._apply_delay(
-            x, y, 0, data._DelayInterpolationMethod.CUBIC
-        )
+        x_out, y_out = data.Dataset._apply_delay(x, y, 0)
         assert torch.all(x == x_out)
         assert torch.all(y == y_out)
-
-    @pytest.mark.parametrize("method", (data._DelayInterpolationMethod))
-    def test_apply_delay_float_negative(self, method):
-        n = 7
-        delay = -2.5
-        x_out, y_out = self._t_apply_delay_float(n, delay, method)
-
-        assert torch.all(x_out == torch.Tensor([3, 4, 5, 6]))
-        assert torch.all(y_out == torch.Tensor([0.5, 1.5, 2.5, 3.5]))
-
-    @pytest.mark.parametrize("method", (data._DelayInterpolationMethod))
-    def test_apply_delay_float_positive(self, method):
-        n = 7
-        delay = 2.5
-        x_out, y_out = self._t_apply_delay_float(n, delay, method)
-
-        assert torch.all(x_out == torch.Tensor([0, 1, 2, 3]))
-        assert torch.all(y_out == torch.Tensor([2.5, 3.5, 4.5, 5.5]))
 
     def test_apply_delay_int_negative(self):
         """
@@ -299,29 +279,12 @@ class TestDataset(object):
                 torch.tile((torch.linspace(0.0, 1.0, n) > 0.5)[None, :], (2, 1))
             )
 
-    def _t_apply_delay_float(
-        self, n: int, delay: int, method: data._DelayInterpolationMethod
-    ):
-        x, y = self._create_xy(
-            n=n, method=_XYMethod.ARANGE, must_be_in_valid_range=False
-        )
-
-        x_out, y_out = data.Dataset._apply_delay(x, y, delay, method)
-        # 7, +/-2.5 -> 4
-        n_out = n - int(np.ceil(np.abs(delay)))
-        assert len(x_out) == n_out
-        assert len(y_out) == n_out
-
-        return x_out, y_out
-
     def _t_apply_delay_int(self, n: int, delay: int):
         x, y = self._create_xy(
             n=n, method=_XYMethod.ARANGE, must_be_in_valid_range=False
         )
 
-        x_out, y_out = data.Dataset._apply_delay(
-            x, y, delay, data._DelayInterpolationMethod.CUBIC
-        )
+        x_out, y_out = data.Dataset._apply_delay(x, y, delay)
         n_out = n - np.abs(delay)
         assert len(x_out) == n_out
         assert len(y_out) == n_out
@@ -383,6 +346,38 @@ class TestWav(object):
             data.np_to_wav(x, x_path, sampwidth=sample_width)
             _, info = data.wav_to_np(x_path, info=True)
         assert info.sampwidth == sample_width
+
+
+class TestConcatDataset(object):
+    @pytest.mark.parametrize("attrname", ("nx", "ny", "sample_rate"))
+    def test_valiation_sample_rate_fail(self, attrname: str):
+        """
+        Assert failed validation for datasets with different nx, ny, sample rates
+        """
+        nx, ny, sample_rate = 1, 2, 48_000.0
+
+        n1 = 16
+        ds1_kwargs = dict(
+            x=torch.zeros((n1,)),
+            y=torch.zeros((n1,)),
+            nx=nx,
+            ny=ny,
+            sample_rate=sample_rate,
+        )
+        ds1 = data.Dataset(**ds1_kwargs)
+        n2 = 7
+        ds2_kwargs = dict(
+            x=torch.zeros((n2,)),
+            y=torch.zeros((n2,)),
+            nx=nx,
+            ny=ny,
+            sample_rate=sample_rate,
+        )
+        # Cause the error by moving the named attr:
+        ds2_kwargs[attrname] += 1
+        ds2 = data.Dataset(**ds2_kwargs)
+        with pytest.raises(data.ConcatDatasetValidationError):
+            data.ConcatDataset([ds1, ds2])
 
 
 def test_audio_mismatch_shapes_in_order():
