@@ -8,6 +8,7 @@ channels:
   - pytorch
   - nvidia  # GPU
 dependencies:
+  - scikit-learn
   - python>=3.9
   - black
   - flake8
