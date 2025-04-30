@@ -9,6 +9,7 @@ channels:
   - nvidia  # GPU
 dependencies:
   - scikit-learn
+  - nam
   - python>=3.9
   - black
   - flake8
