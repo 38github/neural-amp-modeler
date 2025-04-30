@@ -50,7 +50,7 @@ from .lightning_module import LightningModule as _LightningModule
 from . import metadata as _metadata
 
 # Training using the simplified trainers in NAM is done at 48k.
-STANDARD_SAMPLE_RATE = 48_000.0
+STANDARD_SAMPLE_RATE = 96_000.0
 # Default number of output samples per datum.
 _NY_DEFAULT = 8192
 
@@ -1109,7 +1109,7 @@ def _plot(
     """
     print("Plotting a comparison of your model with the target output...")
     with _torch.no_grad():
-        tx = len(ds.x) / 48_000
+        tx = len(ds.x) / 96_000
         print(f"Run (t={tx:.2f} sec)")
         t0 = _time()
         output = model(ds.x).flatten().cpu().numpy()
