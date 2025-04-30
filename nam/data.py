@@ -148,7 +148,7 @@ def tensor_to_wav(x: _torch.Tensor, *args, **kwargs):
 def np_to_wav(
     x: _np.ndarray,
     filename: _Union[str, _Path],
-    rate: int = 48_000,
+    rate: int = 96_000,
     sampwidth: int = 3,
     scale=None,
     **kwargs,
