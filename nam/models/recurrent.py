@@ -111,7 +111,7 @@ class LSTM(_BaseNet):
         self._initial_hidden = _nn.Parameter(
             _torch.zeros((lstm_kwargs.get("num_layers", 1), hidden_size))
         )
-        self._get_initial_state_burn_in = 48_000
+        self._get_initial_state_burn_in = 96_000
 
     @property
     def input_device(self) -> _torch.device:
