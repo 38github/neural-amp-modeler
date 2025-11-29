@@ -7,14 +7,14 @@
         "batch_size": 16,
         "shuffle": true,
         "pin_memory": true,
-        "drop_last": true,
-        "num_workers": 0
+        "drop_last": false,
+        "num_workers": 8
     },
     "val_dataloader": {},
     "trainer": {
         "accelerator": "gpu",
         "devices": 1,
-        "max_epochs": 100
+        "max_epochs": 1000
     },
     "trainer_fit_kwargs": {}
 }
