@@ -88,13 +88,13 @@ def _get_valid_export_directory():
 
 
 def run(
-    epochs: int = 100,
+    epochs: int = 1000,
     delay: _Optional[int] = None,
     model_type: str = "WaveNet",
     architecture: str = "standard",
-    lr: float = 0.004,
-    lr_decay: float = 0.007,
-    seed: _Optional[int] = 0,
+    lr: float = 0.002,
+    lr_decay: float = 0.004,
+    seed: _Optional[int] = 42,
     user_metadata: _Optional[_UserMetadata] = None,
     ignore_checks: bool = False,
     fit_mrstft: bool = True,
