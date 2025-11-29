@@ -8,60 +8,87 @@
         "config": {
             "layers_configs": [
                 {
-                    "condition_size": 1,
-                    "input_size": 1,
-                    "channels": 16,
-                    "head_size": 8,
-                    "kernel_size": 3,
-                    "dilations": [
-                        1,
-                        2,
-                        4,
-                        8,
-                        16,
-                        32,
-                        64,
-                        128,
-                        256,
-                        512
-                    ],
-                    "activation": "Tanh",
-                    "gated": false,
-                    "head_bias": false
-                },
-                {
-                    "condition_size": 1,
-                    "input_size": 16,
-                    "channels": 8,
-                    "head_size": 1,
-                    "kernel_size": 3,
-                    "dilations": [
-                        1,
-                        2,
-                        4,
-                        8,
-                        16,
-                        32,
-                        64,
-                        128,
-                        256,
-                        512
-                    ],
-                    "activation": "Tanh",
-                    "gated": false,
-                    "head_bias": true
+      "input_size": 1,
+      "condition_size": 1,
+      "channels": 8,
+      "head_size": 8,
+      "kernel_size": 5,
+      "dilations": [
+        729,
+        243,
+        81,
+        27,
+        9,
+        3,
+        1
+      ],
+      "activation": "Tanh",
+      "gated": False,
+      "head_bias": True
+    },
+    {
+      "condition_size": 1,
+      "input_size": 8,
+      "channels": 8,
+      "head_size": 8,
+      "kernel_size": 5,
+      "dilations": [
+        729,
+        243,
+        81,
+        27,
+        9,
+        3,
+        1
+      ],
+      "activation": "Tanh",
+      "gated": False,
+      "head_bias": False
+    },
+    {
+      "condition_size": 1,
+      "input_size": 8,
+      "channels": 8,
+      "head_size": 8,
+      "kernel_size": 15,
+      "dilations": [
+       3,
+       1
+      ],
+      "activation": "Tanh",
+      "gated": False,
+      "head_bias": False
+    },
+    {
+      "condition_size": 1,
+      "input_size": 8,
+      "channels": 8,
+      "head_size": 1,
+      "kernel_size": 5,
+      "dilations": [
+        729,
+        243,
+        81,
+        27,
+        9,
+        3,
+        1
+      ],
+      "activation": "Tanh",
+      "gated": False,
+      "head_bias": True
                 }
             ],
-            "head_scale": 0.02
+            "head_scale": 0.50
         }
     },
     "optimizer": {
-        "lr": 0.004
+        "lr": 0.002
     },
     "lr_scheduler": {
-        "class": "ExponentialLR",
-        "kwargs": {
-            "gamma": 0.993
+                "class": "ExponentialLR",
+                "seed": 42,
+                "kwargs": {"gamma": 0.9985},
         }
     }
 }
