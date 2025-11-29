@@ -1485,7 +1485,7 @@ def train(
     input_path: str,
     output_path: str,
     train_path: str,
-    epochs=1000
+    epochs=1000,
     latency: _Optional[int] = None,
     model_type: str = "WaveNet",
     architecture: _Union[Architecture, str] = Architecture.STANDARD,
