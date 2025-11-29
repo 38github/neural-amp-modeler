@@ -76,13 +76,13 @@ except ImportError:
     _HAVE_ACCELERATOR = False
 
 if _HAVE_ACCELERATOR:
-    _DEFAULT_NUM_EPOCHS = 100
+    _DEFAULT_NUM_EPOCHS = 1000
     _DEFAULT_BATCH_SIZE = 16
-    _DEFAULT_LR_DECAY = 0.007
+    _DEFAULT_LR_DECAY = 0.004
 else:
     _DEFAULT_NUM_EPOCHS = 20
-    _DEFAULT_BATCH_SIZE = 1
-    _DEFAULT_LR_DECAY = 0.05
+    _DEFAULT_BATCH_SIZE = 16
+    _DEFAULT_LR_DECAY = 0.004
 _BUTTON_WIDTH = 20
 _BUTTON_HEIGHT = 2
 _TEXT_WIDTH = 70
@@ -517,7 +517,7 @@ class GUI(object):
             "lr": 0.004,
             "lr_decay": _DEFAULT_LR_DECAY,
             "batch_size": _DEFAULT_BATCH_SIZE,
-            "seed": 0,
+            "seed": 42,
         }
 
     def get_mrstft_fit(self) -> bool:
