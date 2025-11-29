@@ -1165,7 +1165,6 @@ def _get_configs(
     },
             "lr_scheduler": {
                 "class": "ExponentialLR",
-                "seed": 42,
                 "kwargs": {"gamma": 0.9985},
                 },
         }
@@ -1486,7 +1485,7 @@ def train(
     input_path: str,
     output_path: str,
     train_path: str,
-    epochs=10002
+    epochs=1000
     latency: _Optional[int] = None,
     model_type: str = "WaveNet",
     architecture: _Union[Architecture, str] = Architecture.STANDARD,
@@ -1494,7 +1493,7 @@ def train(
     ny: int = _NY_DEFAULT,
     lr=0.002,
     lr_decay=0.004,
-    seed: _Optional[int] = 0,
+    seed: _Optional[int] = 42,
     save_plot: bool = True,
     silent: bool = False,
     modelname: str = "model",
