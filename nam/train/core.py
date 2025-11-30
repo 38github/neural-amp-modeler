@@ -896,7 +896,7 @@ def get_wavenet_config(architecture):
       ],
       "activation": "Tanh",
       "gated": False,
-      "head_bias": False
+      "head_bias": True
     },
     {
       "condition_size": 1,
@@ -972,7 +972,7 @@ def get_wavenet_config(architecture):
       ],
       "activation": "Tanh",
       "gated": False,
-      "head_bias": False
+      "head_bias": True
     },
     {
       "condition_size": 1,
