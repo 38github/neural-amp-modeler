@@ -847,155 +847,56 @@ def get_wavenet_config(architecture):
         Architecture.STANDARD: {
             "layers_configs": [
                 {
-      "input_size": 1,
-      "condition_size": 1,
-      "channels": 8,
-      "head_size": 8,
-      "kernel_size": 5,
-      "dilations": [
-        729,
-        243,
-        81,
-        27,
-        9,
-        3,
-        1
-      ],
-      "activation": "Tanh",
-      "gated": False,
-      "head_bias": True
-    },
-    {
-      "condition_size": 1,
-      "input_size": 8,
-      "channels": 8,
-      "head_size": 8,
-      "kernel_size": 5,
-      "dilations": [
-        729,
-        243,
-        81,
-        27,
-        9,
-        3,
-        1
-      ],
-      "activation": "Tanh",
-      "gated": False,
-      "head_bias": False
-    },
-    {
-      "condition_size": 1,
-      "input_size": 8,
-      "channels": 8,
-      "head_size": 8,
-      "kernel_size": 15,
-      "dilations": [
-       3,
-       1
-      ],
-      "activation": "Tanh",
-      "gated": False,
-      "head_bias": True
-    },
-    {
-      "condition_size": 1,
-      "input_size": 8,
-      "channels": 8,
-      "head_size": 1,
-      "kernel_size": 5,
-      "dilations": [
-        729,
-        243,
-        81,
-        27,
-        9,
-        3,
-        1
-      ],
-      "activation": "Tanh",
-      "gated": False,
-      "head_bias": True
-    }
-  ],
-  "head_scale": 0.50,
+                    "input_size": 1,
+                    "condition_size": 1,
+                    "channels": 16,
+                    "head_size": 8,
+                    "kernel_size": 3,
+                    "dilations": [1, 2, 4, 8, 16, 32, 64, 128, 256, 512],
+                    "activation": "Tanh",
+                    "gated": False,
+                    "head_bias": False,
+                },
+                {
+                    "condition_size": 1,
+                    "input_size": 16,
+                    "channels": 8,
+                    "head_size": 1,
+                    "kernel_size": 3,
+                    "dilations": [1, 2, 4, 8, 16, 32, 64, 128, 256, 512],
+                    "activation": "Tanh",
+                    "gated": False,
+                    "head_bias": True,
+                },
+            ],
+            "head_scale": 0.02,
         },
         Architecture.LITE: {
             "layers_configs": [
                 {
-      "input_size": 1,
-      "condition_size": 1,
-      "channels": 5,
-      "head_size": 5,
-      "kernel_size": 5,
-      "dilations": [
-        729,
-        243,
-        81,
-        27,
-        9,
-        3,
-        1
-      ],
-      "activation": "Tanh",
-      "gated": False,
-      "head_bias": True
-    },
-    {
-      "condition_size": 1,
-      "input_size": 5,
-      "channels": 5,
-      "head_size": 5,
-      "kernel_size": 5,
-      "dilations": [
-        729,
-        243,
-        81,
-        27,
-        9,
-        3,
-        1
-      ],
-      "activation": "Tanh",
-      "gated": False,
-      "head_bias": False
-    },
-    {
-      "condition_size": 1,
-      "input_size": 5,
-      "channels": 5,
-      "head_size": 5,
-      "kernel_size": 10,
-      "dilations": [
-       3,
-       1
-      ],
-      "activation": "Tanh",
-      "gated": False,
-      "head_bias": True
-    },
-    {
-      "condition_size": 1,
-      "input_size": 5,
-      "channels": 5,
-      "head_size": 1,
-      "kernel_size": 5,
-      "dilations": [
-        729,
-        243,
-        81,
-        27,
-        9,
-        3,
-        1
-      ],
-      "activation": "Tanh",
-      "gated": False,
-      "head_bias": True
-    }
-  ],
-  "head_scale": 0.50,
-            
+                    "input_size": 1,
+                    "condition_size": 1,
+                    "channels": 12,
+                    "head_size": 6,
+                    "kernel_size": 3,
+                    "dilations": [1, 2, 4, 8, 16, 32, 64],
+                    "activation": "Tanh",
+                    "gated": False,
+                    "head_bias": False,
+                },
+                {
+                    "condition_size": 1,
+                    "input_size": 12,
+                    "channels": 6,
+                    "head_size": 1,
+                    "kernel_size": 3,
+                    "dilations": [128, 256, 512, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512],
+                    "activation": "Tanh",
+                    "gated": False,
+                    "head_bias": True,
+                },
+            ],
+            "head_scale": 0.02,
         },
         Architecture.FEATHER: {
             "layers_configs": [
@@ -1054,8 +955,8 @@ def get_wavenet_config(architecture):
     }[architecture]
 
 
-_CAB_MRSTFT_PRE_EMPH_WEIGHT = 1.5e-3
-_CAB_MRSTFT_PRE_EMPH_COEF = 0.15
+_CAB_MRSTFT_PRE_EMPH_WEIGHT = 2.0e-4
+_CAB_MRSTFT_PRE_EMPH_COEF = 0.85
 
 
 def _get_data_config(
@@ -1156,17 +1057,12 @@ def _get_configs(
                 # "channels" in the first block and "input_size" in the second from 12 to 16.
                 "config": get_wavenet_config(architecture),
             },
-            "loss": {
-        "type": "combined_loss",
-        "loss_weights": {"spectral_mse": 0.9, "perceptual_loss": 0.1, "low_freq_weight": 2.0, "high_freq_weight": 1.0},
-    },
-    "optimizer": {
-    "lr": 0.002,
-    },
+            "loss": {"val_loss": "esr"},
+            "optimizer": {"lr": lr},
             "lr_scheduler": {
                 "class": "ExponentialLR",
-                "kwargs": {"gamma": 0.9985},
-                },
+                "kwargs": {"gamma": 1.0 - lr_decay},
+            },
         }
     else:
         model_config = {
@@ -1199,8 +1095,8 @@ def _get_configs(
             "batch_size": batch_size,
             "shuffle": True,
             "pin_memory": True,
-            "drop_last": False,
-            "num_workers": 8,
+            "drop_last": True,
+            "num_workers": 0,
         },
         "val_dataloader": {},
         "trainer": {"max_epochs": epochs, **device_config},
@@ -1485,16 +1381,16 @@ def train(
     input_path: str,
     output_path: str,
     train_path: str,
-    epochs=1000,
+    epochs=100,
     latency: _Optional[int] = None,
     model_type: str = "WaveNet",
     architecture: _Union[Architecture, str] = Architecture.STANDARD,
     batch_size: int = 16,
     ny: int = _NY_DEFAULT,
-    lr=0.002,
-    lr_decay=0.004,
-    seed: _Optional[int] = 42,
-    save_plot: bool = True,
+    lr=0.004,
+    lr_decay=0.007,
+    seed: _Optional[int] = 0,
+    save_plot: bool = False,
     silent: bool = False,
     modelname: str = "model",
     ignore_checks: bool = False,
