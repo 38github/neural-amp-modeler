@@ -852,7 +852,7 @@ def get_wavenet_config(architecture):
                     "channels": 16,
                     "head_size": 8,
                     "kernel_size": 3,
-                    "dilations": [1, 2, 4, 8, 16, 32, 64, 128, 256, 512],
+                    "dilations": [512, 256, 128, 64, 32, 16, 8, 4, 2, 1],
                     "activation": "Tanh",
                     "gated": False,
                     "head_bias": False,
@@ -869,7 +869,7 @@ def get_wavenet_config(architecture):
                     "head_bias": True,
                 },
             ],
-            "head_scale": 0.02,
+            "head_scale": 0.25,
         },
         Architecture.LITE: {
             "layers_configs": [
