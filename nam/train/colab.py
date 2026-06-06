@@ -29,9 +29,11 @@ _TRAIN_PATH = "."
 
 def _check_for_files() -> str:
     """
+    Check for input and output audio files.
+    Accepts any input.wav file (not restricted to standardized versions).
+    
     :return: The basename of the input file to be used (output is always the same)
     """
-    # TODO use hash logic as in GUI trainer!
     print("Checking that we have all of the required audio files...")
 
     # First, look to see if we've got a buggy input file. If we do, then complain.
@@ -40,33 +42,35 @@ def _check_for_files() -> str:
             raise RuntimeError(
                 f"Detected input signal {name} that has known bugs. Please download the latest input signal, {_LATEST_VERSION[1]}"
             )
-    # Find valid input file by checking for recognized names:
+    
+    # Accept any input.wav file (custom files allowed)
+    input_candidates = ["input.wav"]
+    
+    # Also check for standardized versions as fallback
     for input_version, input_basename, other_names in _INPUT_BASENAMES:
-        if _Path(input_basename).exists():
-            # We found it. We're done here, but maybe print some things before breaking.
-            if input_version == _PROTEUS_VERSION:
-                print(f"Using Proteus input file...")
-            elif input_version != _LATEST_VERSION.version:
-                print(
-                    f"WARNING: Using out-of-date input file {input_basename}. "
-                    "Recommend downloading and using the latest version, "
-                    f"{_LATEST_VERSION.name}."
-                )
-            break
+        if input_basename != "input.wav":  # Don't duplicate
+            input_candidates.append(input_basename)
         if other_names is not None:
             for other_name in other_names:
-                if _Path(other_name).exists():
-                    raise RuntimeError(
-                        f"Found out-of-date input file {other_name}. Rename it to {input_basename} and re-run."
-                    )
-    else:
+                if other_name != "input.wav":
+                    input_candidates.append(other_name)
+    
+    # Find the first available input file
+    input_basename = None
+    for candidate in input_candidates:
+        if _Path(candidate).exists():
+            input_basename = candidate
+            if candidate != "input.wav":
+                # If it's a standardized version, warn user
+                if candidate in [ib.name for ib in _INPUT_BASENAMES]:
+                    print(f"Found standardized input file: {candidate}")
+            break
+    
+    if input_basename is None:
         raise FileNotFoundError(
-            f"Didn't find NAM's input audio file. Please upload {_LATEST_VERSION.name}"
+            f"Didn't find your input audio file. Please upload 'input.wav' "
+            f"(or one of: {', '.join([ib.name for ib in _INPUT_BASENAMES])})"
         )
-    if input_version != _PROTEUS_VERSION:
-        print(f"Found {input_basename}, presumed version {input_version}")
-    else:
-        print(f"Found Proteus input {input_basename}.")
 
     # We found the input. Now check for the output and we'll be good.
     if not _Path(_OUTPUT_BASENAME).exists():
