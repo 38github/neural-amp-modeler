@@ -80,7 +80,7 @@
                             {
                                 "input_size": 1,
                                 "condition_size": 1,
-                                "channels": 8,
+                                "channels": 12,
                                 "kernel_sizes": [
                                     6,
                                     6,
