@@ -151,7 +151,7 @@
     },
     "loss": {
         "val_loss": "esr",
-        "mrstft_weight": 0.0005
+        "mrstft_weight": 0.00001 #!# 0.0005
     },
     "optimizer": {
         "lr": 0.004,
