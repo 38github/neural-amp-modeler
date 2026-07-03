@@ -926,7 +926,7 @@ def _get_configs(
             "batch_size": batch_size,
             "shuffle": True,
             "pin_memory": True,
-            "drop_last": False,
+            "drop_last": True,
             "num_workers": 8,
         },
         "val_dataloader": {},
