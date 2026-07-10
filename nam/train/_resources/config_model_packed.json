@@ -64,7 +64,7 @@
                                 }
                             }
                         ],
-                        "head_scale": 0.01
+                        "head_scale": 0.05
                     }
                 },
                 {
@@ -128,7 +128,7 @@
                                 }
                             }
                         ],
-                        "head_scale": 0.01
+                        "head_scale": 0.05
                     }
                 }
             ],
@@ -143,12 +143,12 @@
     },
     "optimizer": {
         "lr": 0.003,
-        "weight_decay": 3.17e-07
+        "weight_decay": 3.17e-06
     },
     "lr_scheduler": {
         "class": "ExponentialLR",
         "kwargs": {
-            "gamma": 0.995
+            "gamma": 0.998
         }
     }
 }
