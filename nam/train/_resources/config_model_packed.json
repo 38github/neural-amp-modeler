@@ -62,7 +62,7 @@
                                     239
                                 ],
                                 "activation": "LeakyReLU",
-                                "gated": false,
+                                "gated": gated,
                                 "head": {
                                     "out_channels": 1,
                                     "kernel_size": 16,
@@ -132,7 +132,7 @@
                                     239
                                 ],
                                 "activation": "LeakyReLU",
-                                "gated": false,
+                                "gated": gated,
                                 "head": {
                                     "out_channels": 1,
                                     "kernel_size": 16,
@@ -140,7 +140,7 @@
                                 }
                             }
                         ],
-                        "head_scale": 0.01
+                        "head_scale": 0.04
                     }
                 }
             ],
