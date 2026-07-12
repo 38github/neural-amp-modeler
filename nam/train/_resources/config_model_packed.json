@@ -160,7 +160,7 @@
     "lr_scheduler": {
         "class": "ExponentialLR",
         "kwargs": {
-            "gamma": 0.997
+            "gamma": 0.980
         }
     }
 }
