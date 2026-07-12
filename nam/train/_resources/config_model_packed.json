@@ -70,7 +70,7 @@
                                 }
                             }
                         ],
-                        "head_scale": 0.005
+                        "head_scale": 0.09
                     }
                 },
                 {
@@ -140,7 +140,7 @@
                                 }
                             }
                         ],
-                        "head_scale": 0.005
+                        "head_scale": 0.09
                     }
                 }
             ],
@@ -155,12 +155,12 @@
     },
     "optimizer": {
         "lr": 0.003,
-        "weight_decay": 3.17e-06
+        "weight_decay": 3.17e-07
     },
     "lr_scheduler": {
         "class": "ExponentialLR",
         "kwargs": {
-            "gamma": 0.998
+            "gamma": 0.997
         }
     }
 }
