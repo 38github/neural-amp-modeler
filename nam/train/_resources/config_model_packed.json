@@ -70,7 +70,7 @@
                                 }
                             }
                         ],
-                        "head_scale": 0.04
+                        "head_scale": 0.03
                     }
                 },
                 {
@@ -140,7 +140,7 @@
                                 }
                             }
                         ],
-                        "head_scale": 0.04
+                        "head_scale": 0.03
                     }
                 }
             ],
