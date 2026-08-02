@@ -1322,7 +1322,7 @@ def train(
     train_path: str,
     epochs=100,
     latency: _Optional[int] = None,
-    batch_size: int = 4,
+    batch_size: int = 8,
     ny: int = _NY_DEFAULT,
     seed: _Optional[int] = 42,
     save_plot: bool = False,
