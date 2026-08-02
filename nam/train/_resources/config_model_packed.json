@@ -154,13 +154,13 @@
         "mrstft_weight": 0.0002
     },
     "optimizer": {
-        "lr": 0.003,
-        "weight_decay": 3.17e-09
+        "lr": 0.0035,
+        "weight_decay": 3.17e-07
     },
     "lr_scheduler": {
         "class": "ExponentialLR",
         "kwargs": {
-            "gamma": 0.982
+            "gamma": 0.990
         }
     }
 }
