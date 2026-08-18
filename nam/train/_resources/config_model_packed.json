@@ -153,9 +153,7 @@
     },
     "loss": {
         "mrstft_weight": 0.0002,
-        "type": "spectral_mse",
-        "low_freq_weight": 1.0,
-        "high_freq_weight": 1.5
+        "type": "esr"
     },
     "optimizer": {
         "lr": 0.008,
