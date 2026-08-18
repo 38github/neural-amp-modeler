@@ -156,13 +156,13 @@
         "type": "esr"
     },
     "optimizer": {
-        "lr": 0.012,
+        "lr": 0.004,
         "weight_decay": 3.17e-10
     },
     "lr_scheduler": {
         "class": "ExponentialLR",
         "kwargs": {
-            "gamma": 0.990
+            "gamma": 0.99999
         }
     }
 }
