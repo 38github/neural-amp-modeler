@@ -1,6 +1,6 @@
 {
     "net": {
-        "name": "PackedLSTM",
+        "name": "LSTM",
         "config": {
             "submodels": [
                 {
