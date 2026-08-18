@@ -158,8 +158,8 @@
         "high_freq_weight": 1.5
     },
     "optimizer": {
-        "lr": 0.0035,
-        "weight_decay": 3.17e-07
+        "lr": 0.0015,
+        "weight_decay": 3.17e-06
     },
     "lr_scheduler": {
         "class": "ExponentialLR",
