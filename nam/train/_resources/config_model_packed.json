@@ -1,234 +1,106 @@
 {
     "net": {
-        "name": "LSTM",
+        "name": "PackedLSTM",
         "config": {
-            "submodels": [
+            "hidden_size": 8,
+            "num_layers": 2,
+            "input_size": 1,
+            "dropout": 0.1,
+            "head_scale": 0.005,
+            "conv_layers_config": [
                 {
-                    "name": "channels_3",
-                    "config": {
-                        "input_size": 1,
-                        "condition_size": 1,
-                        "hidden_size": 7,
-                        "num_layers": 3,
-                        "dropout": 0.1,
-                        "bidirectional": false,
-                        "conv_layers": [
-                            {
-                                "kernel_size": 6,
-                                "dilation": 1
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 3
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 7
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 17
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 41
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 101
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 239
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 1
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 3
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 7
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 17
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 41
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 101
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 239
-                            },
-                            {
-                                "kernel_size": 15,
-                                "dilation": 1
-                            },
-                            {
-                                "kernel_size": 15,
-                                "dilation": 13
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 1
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 3
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 7
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 17
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 41
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 101
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 239
-                            }
-                        ],
-                        "head": {
-                            "out_channels": 1,
-                            "kernel_size": 16,
-                            "bias": true
-                        },
-                        "head_scale": 0.005
-                    }
+                    "kernel_size": 6,
+                    "dilation": 1
                 },
                 {
-                    "name": "channels_8",
-                    "config": {
-                        "input_size": 1,
-                        "condition_size": 1,
-                        "hidden_size": 21,
-                        "num_layers": 3,
-                        "dropout": 0.1,
-                        "bidirectional": false,
-                        "conv_layers": [
-                            {
-                                "kernel_size": 6,
-                                "dilation": 1
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 3
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 7
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 17
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 41
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 101
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 239
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 1
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 3
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 7
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 17
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 41
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 101
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 239
-                            },
-                            {
-                                "kernel_size": 15,
-                                "dilation": 1
-                            },
-                            {
-                                "kernel_size": 15,
-                                "dilation": 13
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 1
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 3
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 7
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 17
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 41
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 101
-                            },
-                            {
-                                "kernel_size": 6,
-                                "dilation": 239
-                            }
-                        ],
-                        "head": {
-                            "out_channels": 1,
-                            "kernel_size": 16,
-                            "bias": true
-                        },
-                        "head_scale": 0.005
-                    }
+                    "kernel_size": 6,
+                    "dilation": 3
+                },
+                {
+                    "kernel_size": 6,
+                    "dilation": 7
+                },
+                {
+                    "kernel_size": 6,
+                    "dilation": 17
+                },
+                {
+                    "kernel_size": 6,
+                    "dilation": 41
+                },
+                {
+                    "kernel_size": 6,
+                    "dilation": 101
+                },
+                {
+                    "kernel_size": 6,
+                    "dilation": 239
+                },
+                {
+                    "kernel_size": 6,
+                    "dilation": 1
+                },
+                {
+                    "kernel_size": 6,
+                    "dilation": 3
+                },
+                {
+                    "kernel_size": 6,
+                    "dilation": 7
+                },
+                {
+                    "kernel_size": 6,
+                    "dilation": 17
+                },
+                {
+                    "kernel_size": 6,
+                    "dilation": 41
+                },
+                {
+                    "kernel_size": 6,
+                    "dilation": 101
+                },
+                {
+                    "kernel_size": 6,
+                    "dilation": 239
+                },
+                {
+                    "kernel_size": 15,
+                    "dilation": 1
+                },
+                {
+                    "kernel_size": 15,
+                    "dilation": 13
+                },
+                {
+                    "kernel_size": 6,
+                    "dilation": 1
+                },
+                {
+                    "kernel_size": 6,
+                    "dilation": 3
+                },
+                {
+                    "kernel_size": 6,
+                    "dilation": 7
+                },
+                {
+                    "kernel_size": 6,
+                    "dilation": 17
+                },
+                {
+                    "kernel_size": 6,
+                    "dilation": 41
+                },
+                {
+                    "kernel_size": 6,
+                    "dilation": 101
+                },
+                {
+                    "kernel_size": 6,
+                    "dilation": 239
                 }
-            ],
-            "export": {
-                "container_max_values": "uniform"
-            }
+            ]
         }
     },
     "loss": {
