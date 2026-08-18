@@ -11,6 +11,7 @@
                                 "input_size": 1,
                                 "condition_size": 1,
                                 "channels": 3,
+                                "bidirectional": true,
                                 "kernel_sizes": [
                                     6,
                                     6,
@@ -81,6 +82,7 @@
                                 "input_size": 1,
                                 "condition_size": 1,
                                 "channels": 8,
+                                "bidirectional": true,
                                 "kernel_sizes": [
                                     6,
                                     6,
@@ -152,8 +154,8 @@
     "loss": {
         "mrstft_weight": 0.0002,
         "type": "spectral_mse",
-        "low_freq_weight": 2.0,
-        "high_freq_weight": 1.0
+        "low_freq_weight": 1.0,
+        "high_freq_weight": 1.5
     },
     "optimizer": {
         "lr": 0.0035,
