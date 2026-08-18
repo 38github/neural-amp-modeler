@@ -156,7 +156,7 @@
         "type": "esr"
     },
     "optimizer": {
-        "lr": 0.008,
+        "lr": 0.012,
         "weight_decay": 3.17e-10
     },
     "lr_scheduler": {
