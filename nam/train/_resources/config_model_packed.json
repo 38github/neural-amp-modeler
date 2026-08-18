@@ -158,7 +158,7 @@
         "high_freq_weight": 1.5
     },
     "optimizer": {
-        "lr": 0.004,
+        "lr": 0.008,
         "weight_decay": 3.17e-11
     },
     "lr_scheduler": {
