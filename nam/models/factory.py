@@ -17,6 +17,7 @@ from .recurrent import LSTM as _LSTM
 from .sequential import Sequential as _Sequential
 from .wavenet import PackedWaveNet as _PackedWaveNet
 from .wavenet import WaveNet as _WaveNet
+from .packed_lstm import PackedLSTM as _PackedLSTM
 
 _logger = _logging.getLogger(__name__)
 
@@ -24,6 +25,7 @@ _model_net_init_registry = {
     "ConvNet": _ConvNet.init_from_config,
     "Linear": _Linear.init_from_config,
     "LSTM": _LSTM.init_from_config,
+    "PackedLSTM": _PackedLSTM.init_from_config,
     "Sequential": _Sequential.init_from_config,
     "WaveNet": _WaveNet.init_from_config,
     "PackedWaveNet": _PackedWaveNet.init_from_config,
