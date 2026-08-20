@@ -63,7 +63,7 @@
                                     239
                                 ],
                                 "activation": "LeakyReLU",
-                                "gated": false,
+                                "gated": true,
                                 "head": {
                                     "out_channels": 1,
                                     "kernel_size": 16,
@@ -71,7 +71,7 @@
                                 }
                             }
                         ],
-                        "head_scale": 0.01
+                        "head_scale": 0.05
                     }
                 },
                 {
@@ -134,7 +134,7 @@
                                     239
                                 ],
                                 "activation": "LeakyReLU",
-                                "gated": false,
+                                "gated": true,
                                 "head": {
                                     "out_channels": 1,
                                     "kernel_size": 16,
@@ -142,7 +142,7 @@
                                 }
                             }
                         ],
-                        "head_scale": 0.01
+                        "head_scale": 0.05
                     }
                 }
             ],
@@ -162,7 +162,7 @@
     "lr_scheduler": {
         "class": "ExponentialLR",
         "kwargs": {
-            "gamma": 0.99999
+            "gamma": 0.995
         }
     }
 }
