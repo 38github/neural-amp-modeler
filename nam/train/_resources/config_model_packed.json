@@ -169,7 +169,7 @@
     },
     "optimizer": {
         "lr": 0.004,
-        "weight_decay": 3.17e-10
+        "weight_decay": 3.17e-6
     },
     "lr_scheduler": {
         "class": "ExponentialLR",
