@@ -56,7 +56,7 @@ from .lightning_module import PackedMaskCallback as _PackedMaskCallback
 # Training using the simplified trainers in NAM is done at 48k.
 STANDARD_SAMPLE_RATE = 48_000.0
 # Default number of output samples per datum.
-_NY_DEFAULT = 2048 # 8192
+_NY_DEFAULT = 4096 # 8192
 
 
 class _InputValidationError(ValueError):
