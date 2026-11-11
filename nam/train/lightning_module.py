@@ -48,6 +48,17 @@ from ..util import init as _init
 logger = _logging.getLogger(__name__)
 
 
+def _cyclic_weight_decay(
+    step: int, minimum: float, maximum: float, period_steps: int
+) -> float:
+    """Triangle-wave weight-decay schedule: minimum -> maximum -> minimum."""
+    if period_steps <= 0:
+        raise ValueError("weight_decay_schedule.period_steps must be > 0")
+    phase = (step % period_steps) / period_steps
+    triangle = 1.0 - abs(2.0 * phase - 1.0)
+    return minimum + triangle * (maximum - minimum)
+
+
 class ValidationLoss(_Enum):
     """
     mse: mean squared error
@@ -80,7 +91,7 @@ class LossConfig(_InitializableFromConfig):
     :params val_loss: Which loss to track for the best model checkpoint. If a string is
         provided, then it must match the name of a custom loss.
     :param pre_emph_coef: Coefficient of 1st-order pre-emphasis filter from
-        https://www.mdpi.com/2076-3417/10/3/766. Paper value: 0.95.
+        https://www.mdpi.com/2076-3417/10/3/766/htm. Paper value: 0.95.
     :param pre_
     """
 
@@ -194,6 +205,7 @@ class LightningModule(_pl.LightningModule, _InitializableFromConfig):
         optimizer_config: _Optional[dict] = None,
         scheduler_config: _Optional[dict] = None,
         loss_config: _Optional[LossConfig] = None,
+        weight_decay_schedule: _Optional[dict] = None,
     ):
         """
         :param scheduler_config: contains
@@ -209,6 +221,7 @@ class LightningModule(_pl.LightningModule, _InitializableFromConfig):
         self._net = net
         self._optimizer_config = {} if optimizer_config is None else optimizer_config
         self._scheduler_config = scheduler_config
+        self._weight_decay_schedule = weight_decay_schedule
         self._loss_config = LossConfig() if loss_config is None else loss_config
         self._mrstft = None  # Multi-resolution short-time Fourier transform loss
         # Where to compute the MRSTFT.
@@ -262,11 +275,13 @@ class LightningModule(_pl.LightningModule, _InitializableFromConfig):
             name=net_config["name"], kwargs={"config": net_config["config"]}
         )
         loss_config = LossConfig.init_from_config(config.get("loss", {}))
+        weight_decay_schedule = config.get("weight_decay_schedule")
         return {
             "net": net,
             "optimizer_config": config["optimizer"],
             "scheduler_config": config["lr_scheduler"],
             "loss_config": loss_config,
+            "weight_decay_schedule": weight_decay_schedule,
         }
 
     @classmethod
@@ -279,7 +294,7 @@ class LightningModule(_pl.LightningModule, _InitializableFromConfig):
         return self._net
 
     def configure_optimizers(self):
-        optimizer = _torch.optim.Adam(self.parameters(), **self._optimizer_config)
+        optimizer = _torch.optim.AdamW(self.parameters(), **self._optimizer_config)
         if self._scheduler_config is None:
             return optimizer
         else:
@@ -291,6 +306,29 @@ class LightningModule(_pl.LightningModule, _InitializableFromConfig):
                 if key in self._scheduler_config:
                     lr_scheduler_config[key] = self._scheduler_config[key]
             return {"optimizer": optimizer, "lr_scheduler": lr_scheduler_config}
+
+    def _compute_weight_decay(self) -> _Optional[float]:
+        schedule = self._weight_decay_schedule
+        if schedule is None:
+            return None
+        period_steps = int(schedule.get("period_steps", 1000))
+        if period_steps <= 0:
+            raise ValueError("weight_decay_schedule.period_steps must be > 0")
+        phase = (self.global_step % period_steps) / period_steps
+        triangle = 1.0 - abs(2.0 * phase - 1.0)
+        minimum = float(schedule.get("min", 0.0))
+        maximum = float(
+            schedule.get("max", self._optimizer_config.get("weight_decay", minimum))
+        )
+        return minimum + triangle * (maximum - minimum)
+
+    def on_train_batch_start(self, batch, batch_idx):
+        weight_decay = self._compute_weight_decay()
+        if weight_decay is None:
+            return
+        for optimizer in self.trainer.optimizers:
+            for group in optimizer.param_groups:
+                group["weight_decay"] = weight_decay
 
     def forward(self, *args, **kwargs):
         return self.net(*args, **kwargs)  # TODO deprecate--use self.net() instead.
@@ -568,7 +606,12 @@ class PackedLightningModule(LightningModule):
 
 
 class PackedMaskCallback(_pl.Callback):
-    """Keep packed off-block weights exactly zero after optimizer updates."""
+    """
+    Keep packed off-block weights exactly zero after optimizer updates.
+
+    Redundant with `PackedLightningModule`, which already masks after every
+    optimizer step; kept for training loops that use other Lightning modules.
+    """
 
     def on_before_zero_grad(self, trainer, pl_module, optimizer) -> None:
         if isinstance(getattr(pl_module, "net", None), _PackedWaveNet):
