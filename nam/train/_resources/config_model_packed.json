@@ -64,7 +64,7 @@
             ],
             "export": {
                 "container_max_values": "uniform"
-            }38github/neural-amp-modeler-adamw-cycliclr
+            }
         }
     },
     "loss": {
