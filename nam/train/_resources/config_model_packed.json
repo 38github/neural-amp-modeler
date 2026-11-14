@@ -65,7 +65,7 @@
                                 "gated": false,
                                 "head": {
                                     "out_channels": 1,
-                                    "kernel_size": 16,
+                                    "kernel_size": 20,
                                     "bias": true
                                 }
                             }
@@ -135,7 +135,7 @@
                                 "gated": false,
                                 "head": {
                                     "out_channels": 1,
-                                    "kernel_size": 16,
+                                    "kernel_size": 20,
                                     "bias": true
                                 }
                             }
