@@ -66,11 +66,11 @@
                                 "head": {
                                     "out_channels": 1,
                                     "kernel_size": 16,
-                                    "bias": true
+                                    "bias": false
                                 }
                             }
                         ],
-                        "head_scale": 0.05
+                        "head_scale": 0.005
                     }
                 },
                 {
@@ -136,11 +136,11 @@
                                 "head": {
                                     "out_channels": 1,
                                     "kernel_size": 16,
-                                    "bias": true
+                                    "bias": false
                                 }
                             }
                         ],
-                        "head_scale": 0.05
+                        "head_scale": 0.005
                     }
                 }
             ],
