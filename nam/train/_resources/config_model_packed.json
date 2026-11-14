@@ -59,7 +59,7 @@
                                     17,
                                     41,
                                     101,
-                                    512
+                                    239
                                 ],
                                 "activation": "LeakyReLU",
                                 "gated": true,
@@ -129,7 +129,7 @@
                                     17,
                                     41,
                                     101,
-                                    512
+                                    239
                                 ],
                                 "activation": "LeakyReLU",
                                 "gated": true,
