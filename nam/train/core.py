@@ -923,7 +923,7 @@ def _get_configs(
     learning_config = {
         "train_dataloader": {
             "batch_size": batch_size,
-            "shuffle": True,
+            "shuffle": False,
             "pin_memory": True,
             "drop_last": True,
             "num_workers": 0,
