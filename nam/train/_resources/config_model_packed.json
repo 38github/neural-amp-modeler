@@ -70,7 +70,7 @@
                                 }
                             }
                         ],
-                        "head_scale": 0.015
+                        "head_scale": 0.0125
                     }
                 },
                 {
@@ -140,7 +140,7 @@
                                 }
                             }
                         ],
-                        "head_scale": 0.015
+                        "head_scale": 0.0125
                     }
                 }
             ],
@@ -150,8 +150,10 @@
         }
     },
     "loss": {
-        "val_loss": "esr",
         "mrstft_weight": 0.0005
+        "type": "spectral_mse",
+        "low_freq_weight": 2.0,
+        "high_freq_weight": 1.0
     },
     "optimizer": {
         "lr": 0.004,
@@ -160,7 +162,7 @@
     "lr_scheduler": {
         "class": "ExponentialLR",
         "kwargs": {
-            "gamma": 0.997
+            "gamma": 0.994
         }
     }
 }
