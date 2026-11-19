@@ -150,7 +150,7 @@
         }
     },
     "loss": {
-        "mrstft_weight": 0.0005
+        "mrstft_weight": 0.0005,
         "type": "spectral_mse",
         "low_freq_weight": 2.0,
         "high_freq_weight": 1.0
