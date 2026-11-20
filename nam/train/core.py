@@ -53,9 +53,9 @@ from .lightning_module import PackedBestCheckpoint as _PackedBestCheckpoint
 from .lightning_module import PackedLightningModule as _PackedLightningModule
 
 # Training using the simplified trainers in NAM is done at 48k.
-STANDARD_SAMPLE_RATE = 48_000.0
+STANDARD_SAMPLE_RATE = 96_000.0
 # Default number of output samples per datum.
-_NY_DEFAULT = 8192
+_NY_DEFAULT = 16384
 
 
 class _InputValidationError(ValueError):
