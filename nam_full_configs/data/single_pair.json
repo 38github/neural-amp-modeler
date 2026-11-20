@@ -6,7 +6,7 @@
     "train": {
         "start_seconds": null,
         "stop_seconds": -9.0,
-        "ny": 8192
+        "ny": 16384
     },
     "validation": {
         "start_seconds": -9.0,
@@ -14,8 +14,8 @@
         "ny": null
     },
     "common": {
-        "x_path": "C:\\path\\to\\source.wav",
-        "y_path": "C:\\path\\to\\target.wav",
+        "x_path": "/content/inpit.wav",
+        "y_path": "/content/output.wav",
         "delay": 0
     }
 }
