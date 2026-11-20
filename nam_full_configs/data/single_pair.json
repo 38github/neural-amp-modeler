@@ -14,7 +14,7 @@
         "ny": null
     },
     "common": {
-        "x_path": "/content/inpit.wav",
+        "x_path": "/content/input.wav",
         "y_path": "/content/output.wav",
         "delay": 0
     }
